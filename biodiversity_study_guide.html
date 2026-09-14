@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adiaha's Science Lab — Life, Ecosystems &amp; Biodiversity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12283f;
+  --ink-soft:#42607c;
+  --reef:#00a39b;
+  --reef-deep:#00776f;
+  --lagoon:#7ce6d8;
+  --mango:#ffb300;
+  --mango-deep:#d98c00;
+  --hibiscus:#ff5c8a;
+  --hibiscus-deep:#d43a68;
+  --leaf:#3fb95d;
+  --leaf-deep:#2a8b43;
+  --grape:#7a5cff;
+  --paper:#ffffff;
+  --wash:#e9f8f6;
+  --sand:#fff4d9;
+  --shell:#ffe9f0;
+  --line:#cbe6e2;
+  --shadow:0 10px 0 rgba(18,40,63,.10);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:86px;}
+body{
+  margin:0;
+  font-family:'Nunito',system-ui,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 600px at 12% -5%, #d9f5f0 0%, rgba(217,245,240,0) 60%),
+    radial-gradient(900px 500px at 92% 8%, #ffeaf1 0%, rgba(255,234,241,0) 60%),
+    radial-gradient(900px 700px at 50% 100%, #fff6e2 0%, rgba(255,246,226,0) 55%),
+    #f3fbf9;
+  font-size:17px;
+  line-height:1.65;
+  -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4,.display{font-family:'Fredoka',system-ui,sans-serif;font-weight:600;line-height:1.15;margin:0;}
+p{margin:0 0 .9em;}
+a{color:var(--reef-deep);}
+
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px;}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  padding:54px 0 40px;
+  overflow:hidden;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--paper);
+  border:3px solid var(--ink);
+  border-radius:999px;
+  padding:7px 16px 7px 10px;
+  font-weight:800;font-size:.86rem;
+  box-shadow:0 5px 0 rgba(18,40,63,.15);
+}
+.hero-badge .dot{width:14px;height:14px;border-radius:50%;background:var(--hibiscus);box-shadow:0 0 0 4px var(--shell);}
+.hero h1{
+  font-size:clamp(2.5rem,7.5vw,4.6rem);
+  font-weight:700;
+  letter-spacing:-.02em;
+  margin:20px 0 6px;
+  max-width:14ch;
+}
+.hero h1 .swim{
+  display:inline-block;
+  background:linear-gradient(180deg,transparent 58%, var(--lagoon) 58%);
+  padding:0 .08em;
+}
+.hero-sub{font-size:1.14rem;max-width:56ch;color:var(--ink-soft);font-weight:600;}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.tagpill{
+  background:var(--paper);border:2px solid var(--line);border-radius:999px;
+  padding:5px 13px;font-size:.82rem;font-weight:700;color:var(--ink-soft);
+}
+
+/* live hero widget */
+.spark{
+  margin-top:30px;
+  background:var(--paper);
+  border:3px solid var(--ink);
+  border-radius:26px;
+  box-shadow:var(--shadow);
+  padding:20px 20px 22px;
+}
+.spark h3{font-size:1.15rem;margin-bottom:4px;}
+.spark p.hint{font-size:.92rem;color:var(--ink-soft);margin-bottom:14px;font-weight:600;}
+.spark-row{display:flex;flex-wrap:wrap;gap:10px;}
+.spark-btn{
+  font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:500;
+  border:3px solid var(--ink);border-radius:16px;background:var(--wash);
+  padding:12px 16px;cursor:pointer;color:var(--ink);
+  transition:transform .12s ease, background .12s ease;
+}
+.spark-btn:hover{transform:translateY(-2px);}
+.spark-btn.alive{background:#d7f8de;border-color:var(--leaf-deep);}
+.spark-btn.notalive{background:#ffe0e8;border-color:var(--hibiscus-deep);}
+.spark-btn.wasalive{background:var(--sand);border-color:var(--mango-deep);}
+.spark-feedback{margin-top:14px;font-weight:700;min-height:1.6em;font-size:.98rem;}
+
+/* ---------- NAV ---------- */
+.chapnav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(243,251,249,.93);
+  backdrop-filter:blur(8px);
+  border-bottom:3px solid var(--ink);
+  padding:10px 0;
+}
+.chapnav-inner{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin;}
+.chapnav a{
+  flex:0 0 auto;
+  font-family:'Fredoka',sans-serif;font-size:.9rem;font-weight:500;
+  text-decoration:none;color:var(--ink);
+  background:var(--paper);border:2px solid var(--ink);border-radius:999px;
+  padding:6px 14px;white-space:nowrap;
+}
+.chapnav a:hover{background:var(--lagoon);}
+.chapnav a.jumpquiz{background:var(--mango);border-color:var(--ink);font-weight:600;}
+
+/* ---------- CHAPTERS ---------- */
+.chapter{padding:46px 0 10px;}
+.chap-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:22px;}
+.chap-num{
+  flex:0 0 auto;
+  width:56px;height:56px;border-radius:18px;
+  display:grid;place-items:center;
+  font-family:'Fredoka',sans-serif;font-size:1.6rem;font-weight:700;color:#fff;
+  border:3px solid var(--ink);box-shadow:0 6px 0 rgba(18,40,63,.15);
+  transform:rotate(-4deg);
+}
+.c1 .chap-num{background:var(--reef);}
+.c2 .chap-num{background:var(--hibiscus);}
+.c3 .chap-num{background:var(--leaf);}
+.c4 .chap-num{background:var(--mango);color:var(--ink);}
+.c5 .chap-num{background:var(--grape);}
+.c6 .chap-num{background:var(--reef-deep);}
+.c7 .chap-num{background:var(--hibiscus-deep);}
+.c8 .chap-num{background:var(--ink);}
+.chap-head h2{font-size:clamp(1.6rem,4.4vw,2.3rem);font-weight:700;}
+.chap-head .lesson-date{font-size:.85rem;font-weight:800;color:var(--ink-soft);margin-top:4px;display:block;}
+
+.card{
+  background:var(--paper);
+  border:3px solid var(--ink);
+  border-radius:24px;
+  padding:22px 22px 18px;
+  box-shadow:var(--shadow);
+  margin-bottom:20px;
+}
+.card h3{font-size:1.3rem;margin-bottom:10px;}
+.card h4{font-size:1.05rem;margin:16px 0 6px;}
+
+.defbox{
+  border-left:10px solid var(--reef);
+  background:var(--wash);
+  border-radius:0 16px 16px 0;
+  padding:14px 18px;
+  margin:12px 0;
+}
+.defbox b{font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.06rem;}
+.defbox.pink{border-left-color:var(--hibiscus);background:var(--shell);}
+.defbox.gold{border-left-color:var(--mango);background:var(--sand);}
+.defbox.green{border-left-color:var(--leaf);background:#e4f8e8;}
+
+.watchout{
+  background:#fff3f6;
+  border:3px dashed var(--hibiscus);
+  border-radius:20px;
+  padding:16px 18px;
+  margin:16px 0;
+}
+.watchout h4{color:var(--hibiscus-deep);margin-top:0;}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+@media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr;}}
+
+.minicard{
+  border:3px solid var(--ink);border-radius:20px;padding:16px;
+  background:var(--paper);
+}
+.minicard h4{margin-top:0;font-size:1.08rem;}
+.minicard.teal{background:var(--wash);}
+.minicard.pinkbg{background:var(--shell);}
+.minicard.goldbg{background:var(--sand);}
+.minicard.greenbg{background:#e4f8e8;}
+
+ul.tick{list-style:none;padding:0;margin:8px 0;}
+ul.tick li{padding-left:28px;position:relative;margin-bottom:7px;}
+ul.tick li::before{content:"";position:absolute;left:0;top:.55em;width:12px;height:12px;border-radius:4px;background:var(--reef);}
+ul.tick.pink li::before{background:var(--hibiscus);}
+ul.tick.gold li::before{background:var(--mango);}
+ul.tick.green li::before{background:var(--leaf);}
+
+/* ---------- DRAG & DROP ---------- */
+.dnd{margin-top:8px;}
+.pool{
+  display:flex;flex-wrap:wrap;gap:10px;
+  min-height:62px;
+  padding:14px;
+  border:3px dashed var(--line);
+  border-radius:18px;
+  background:#f7fdfc;
+  align-content:flex-start;
+}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Fredoka',sans-serif;font-weight:500;font-size:.98rem;
+  background:var(--paper);
+  border:3px solid var(--ink);
+  border-radius:14px;
+  padding:8px 13px;
+  cursor:grab;
+  box-shadow:0 4px 0 rgba(18,40,63,.16);
+  touch-action:none;
+  user-select:none;
+  -webkit-user-select:none;
+}
+.chip:active{cursor:grabbing;}
+.chip.dragging{opacity:.35;}
+.chip.ghost{
+  position:fixed;z-index:9999;pointer-events:none;
+  transform:translate(-50%,-50%) rotate(-3deg) scale(1.05);
+  opacity:.95;box-shadow:0 12px 22px rgba(18,40,63,.3);
+}
+.chip .x{
+  border:none;background:rgba(18,40,63,.12);color:var(--ink);
+  width:22px;height:22px;border-radius:50%;
+  font-size:.8rem;line-height:1;cursor:pointer;font-weight:900;
+  display:grid;place-items:center;padding:0;flex:0 0 auto;
+}
+.chip .x:hover{background:var(--hibiscus);color:#fff;}
+.chip.right{background:#d7f8de;border-color:var(--leaf-deep);}
+.chip.wrong{background:#ffdfe7;border-color:var(--hibiscus-deep);}
+
+.bins{display:grid;gap:14px;margin-top:14px;}
+.bins.two{grid-template-columns:1fr 1fr;}
+@media(max-width:700px){.bins.two{grid-template-columns:1fr;}}
+.bin{
+  border:3px solid var(--ink);border-radius:20px;
+  padding:12px;background:var(--paper);
+  min-height:110px;
+  transition:background .15s ease, transform .15s ease;
+}
+.bin.over{background:var(--lagoon);transform:scale(1.02);}
+.bin-label{
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.02rem;
+  display:flex;align-items:center;gap:8px;margin-bottom:10px;
+}
+.bin-label .swatch{width:16px;height:16px;border-radius:5px;background:var(--reef);}
+.bin.b-pink .bin-label .swatch{background:var(--hibiscus);}
+.bin.b-gold .bin-label .swatch{background:var(--mango);}
+.bin.b-green .bin-label .swatch{background:var(--leaf);}
+.bin.b-grape .bin-label .swatch{background:var(--grape);}
+.bin-drop{display:flex;flex-wrap:wrap;gap:9px;min-height:50px;align-content:flex-start;}
+
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center;}
+button.act{
+  font-family:'Fredoka',sans-serif;font-size:1rem;font-weight:500;
+  border:3px solid var(--ink);border-radius:14px;
+  padding:10px 18px;cursor:pointer;color:var(--ink);
+  background:var(--mango);
+  box-shadow:0 5px 0 rgba(18,40,63,.2);
+  transition:transform .1s ease;
+}
+button.act:hover{transform:translateY(-2px);}
+button.act:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(18,40,63,.2);}
+button.act.ghostbtn{background:var(--paper);}
+button.act.go{background:var(--leaf);color:#fff;}
+.result{font-weight:800;font-size:.98rem;}
+.result.good{color:var(--leaf-deep);}
+.result.bad{color:var(--hibiscus-deep);}
+
+/* ---------- MRS GREN WHEEL ---------- */
+.wheel{
+  position:relative;
+  width:min(520px,100%);
+  aspect-ratio:1/1;
+  margin:10px auto 6px;
+}
+.wheel-core{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:33%;aspect-ratio:1/1;border-radius:50%;
+  background:var(--ink);color:#fff;
+  display:grid;place-items:center;text-align:center;
+  border:4px solid var(--paper);
+  box-shadow:0 0 0 4px var(--ink);
+  font-family:'Fredoka',sans-serif;font-weight:700;
+  font-size:clamp(1rem,4vw,1.5rem);
+  letter-spacing:.04em;
+}
+.petal{
+  position:absolute;
+  width:30%;aspect-ratio:1/1;border-radius:50%;
+  border:3px solid var(--ink);
+  display:grid;place-items:center;text-align:center;
+  font-family:'Fredoka',sans-serif;font-weight:600;
+  font-size:clamp(.68rem,2.4vw,.92rem);
+  cursor:pointer;
+  transform:translate(-50%,-50%);
+  transition:transform .16s ease, box-shadow .16s ease;
+  box-shadow:0 5px 0 rgba(18,40,63,.18);
+  padding:6px;
+}
+.petal:hover{transform:translate(-50%,-50%) scale(1.09);}
+.petal.active{transform:translate(-50%,-50%) scale(1.13);box-shadow:0 0 0 6px var(--lagoon),0 5px 0 rgba(18,40,63,.18);}
+.petal span.letter{display:block;font-size:1.5em;font-weight:700;line-height:1;}
+.gren-panel{
+  border:3px solid var(--ink);border-radius:22px;
+  padding:18px;background:var(--wash);min-height:150px;
+}
+.gren-panel h4{font-size:1.25rem;margin:0 0 6px;}
+.gren-panel .where{
+  display:inline-block;background:var(--ink);color:#fff;
+  border-radius:999px;padding:3px 12px;font-size:.78rem;font-weight:800;
+  margin-bottom:8px;
+}
+@media(max-width:560px){
+  .wheel{width:100%;}
+}
+
+/* ---------- REEF SCENE ---------- */
+.reef{
+  position:relative;border:3px solid var(--ink);border-radius:24px;overflow:hidden;
+  background:linear-gradient(180deg,#bff0ff 0%, #6fd6ea 45%, #1e9fc4 100%);
+  padding:18px;
+}
+.reef-items{display:flex;flex-wrap:wrap;gap:10px;position:relative;z-index:2;}
+.reef-item{
+  font-family:'Fredoka',sans-serif;font-weight:500;
+  border:3px solid var(--ink);border-radius:14px;background:rgba(255,255,255,.92);
+  padding:9px 14px;cursor:pointer;font-size:.95rem;
+  box-shadow:0 4px 0 rgba(18,40,63,.2);
+}
+.reef-item.tag-bio{background:#c9f5d2;}
+.reef-item.tag-abio{background:#ffe2ec;}
+.reef-item.miss{outline:4px solid var(--mango);}
+.reef-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-weight:800;font-size:.86rem;color:#08344a;position:relative;z-index:2;}
+.reef-legend span i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:6px;border:2px solid var(--ink);vertical-align:-2px;}
+
+/* ---------- FLIP CARDS ---------- */
+.flip{perspective:1100px;cursor:pointer;min-height:230px;}
+.flip-in{position:relative;width:100%;height:100%;min-height:230px;transition:transform .5s cubic-bezier(.4,.2,.2,1);transform-style:preserve-3d;}
+.flip.on .flip-in{transform:rotateY(180deg);}
+.flip-face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border:3px solid var(--ink);border-radius:20px;padding:18px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.flip-back{transform:rotateY(180deg);background:var(--paper);}
+.flip-face h4{margin:0 0 8px;font-size:1.15rem;}
+.flip-face .tapme{font-size:.78rem;font-weight:800;color:var(--ink-soft);margin-top:auto;}
+
+/* ---------- REVEALS ---------- */
+.reveal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:780px){.reveal-grid{grid-template-columns:1fr 1fr;}}
+.reveal{
+  border:3px solid var(--ink);border-radius:18px;padding:14px;cursor:pointer;
+  background:var(--paper);text-align:center;transition:background .15s ease;
+}
+.reveal h4{font-size:1rem;margin:0 0 4px;}
+.reveal .body{font-size:.88rem;display:none;text-align:left;margin-top:8px;}
+.reveal.open .body{display:block;}
+.reveal .cue{font-size:.75rem;font-weight:800;color:var(--ink-soft);}
+.reveal.open .cue{display:none;}
+.reveal.open{background:var(--sand);}
+
+/* ---------- MOSQUITO SIM ---------- */
+.sim{border:3px solid var(--ink);border-radius:22px;padding:18px;background:var(--paper);}
+.sim-toggle{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.sim-toggle button{
+  font-family:'Fredoka',sans-serif;font-size:.95rem;font-weight:500;
+  border:3px solid var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer;background:var(--paper);
+}
+.sim-toggle button.on{background:var(--ink);color:#fff;}
+.sim-field{
+  display:grid;grid-template-columns:repeat(8,1fr);gap:6px;
+  background:#eaf7ef;border:3px solid var(--ink);border-radius:16px;padding:10px;
+}
+@media(max-width:560px){.sim-field{grid-template-columns:repeat(5,1fr);}}
+.host{
+  aspect-ratio:1/1;border-radius:10px;border:2px solid var(--ink);
+  display:grid;place-items:center;font-size:clamp(.9rem,3.2vw,1.3rem);
+}
+.host.comp{background:#ffd3de;}
+.host.incomp{background:#d6f3dd;}
+.host.hit{outline:4px solid var(--ink);animation:pop .35s ease;}
+@keyframes pop{0%{transform:scale(.7)}60%{transform:scale(1.18)}100%{transform:scale(1)}}
+.sim-stats{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-weight:800;}
+.sim-stats .n{font-family:'Fredoka',sans-serif;font-size:1.7rem;display:block;line-height:1;}
+.sim-note{margin-top:10px;font-weight:700;font-size:.93rem;color:var(--ink-soft);}
+
+/* ---------- QUIZ ---------- */
+.quiz-hero{
+  background:var(--ink);color:#fff;border-radius:28px;padding:30px 24px;
+  border:3px solid var(--ink);margin-top:40px;
+}
+.quiz-hero h2{font-size:clamp(1.8rem,5.5vw,2.8rem);font-weight:700;color:#fff;}
+.quiz-hero p{color:#c7e5e2;max-width:52ch;font-weight:600;}
+.qmeta{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.qmeta span{background:rgba(255,255,255,.12);border-radius:999px;padding:5px 14px;font-size:.84rem;font-weight:800;}
+
+.q{
+  background:var(--paper);border:3px solid var(--ink);border-radius:22px;
+  padding:20px;margin:18px 0;box-shadow:var(--shadow);
+}
+.q-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;}
+.q-no{
+  flex:0 0 auto;width:38px;height:38px;border-radius:12px;background:var(--lagoon);
+  border:3px solid var(--ink);display:grid;place-items:center;
+  font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;
+}
+.q-type{
+  display:inline-block;font-size:.72rem;font-weight:900;letter-spacing:.06em;
+  background:var(--sand);border:2px solid var(--ink);border-radius:999px;padding:2px 10px;margin-bottom:6px;
+}
+.q-prompt{font-weight:700;font-size:1.05rem;}
+.opts{display:grid;gap:9px;margin-top:6px;}
+.opt{
+  display:flex;gap:11px;align-items:flex-start;
+  border:3px solid var(--line);border-radius:14px;padding:11px 14px;cursor:pointer;
+  background:#fbfefe;font-weight:600;transition:border-color .12s ease,background .12s ease;
+}
+.opt:hover{border-color:var(--reef);}
+.opt .mark{
+  flex:0 0 auto;width:26px;height:26px;border-radius:9px;border:3px solid var(--ink);
+  display:grid;place-items:center;font-family:'Fredoka',sans-serif;font-weight:600;font-size:.85rem;background:#fff;
+}
+.opt.sel{background:var(--wash);border-color:var(--ink);}
+.opt.sel .mark{background:var(--ink);color:#fff;}
+.opt.ok{background:#dff7e4;border-color:var(--leaf-deep);}
+.opt.no{background:#ffe1e9;border-color:var(--hibiscus-deep);}
+.opt.missed{border-color:var(--mango-deep);background:var(--sand);}
+.tf .opts{grid-template-columns:1fr 1fr;}
+@media(max-width:520px){.tf .opts{grid-template-columns:1fr;}}
+.fb{
+  margin-top:12px;padding:12px 14px;border-radius:14px;font-weight:700;font-size:.95rem;display:none;
+}
+.fb.show{display:block;}
+.fb.good{background:#dff7e4;border:2px solid var(--leaf-deep);}
+.fb.bad{background:#ffe1e9;border:2px solid var(--hibiscus-deep);}
+
+.blank-slot{
+  display:inline-grid;place-items:center;
+  min-width:130px;min-height:44px;padding:4px 8px;
+  border:3px dashed var(--reef);border-radius:12px;background:#f2fcfb;
+  vertical-align:middle;margin:3px 2px;
+}
+.blank-slot.over{background:var(--lagoon);}
+.blank-line{font-weight:700;line-height:2.4;font-size:1.02rem;}
+
+.match-row{
+  display:grid;grid-template-columns:minmax(150px,190px) 1fr;gap:12px;align-items:center;
+  border:3px solid var(--ink);border-radius:16px;padding:10px;margin-bottom:10px;background:#fbfefe;
+}
+@media(max-width:620px){.match-row{grid-template-columns:1fr;}}
+.match-slot{
+  min-height:52px;border:3px dashed var(--reef);border-radius:12px;background:#f2fcfb;
+  display:flex;align-items:center;justify-content:center;padding:6px;
+}
+.match-slot.over{background:var(--lagoon);}
+.match-def{font-weight:600;font-size:.96rem;}
+
+.order-slots{display:grid;gap:10px;margin-top:12px;}
+.order-slot{
+  display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;
+  border:3px solid var(--ink);border-radius:16px;padding:8px;background:#fbfefe;
+}
+.order-slot .n{
+  width:38px;height:38px;border-radius:12px;background:var(--mango);border:3px solid var(--ink);
+  display:grid;place-items:center;font-family:'Fredoka',sans-serif;font-weight:700;
+}
+.order-drop{min-height:50px;border:3px dashed var(--reef);border-radius:12px;background:#f2fcfb;display:flex;align-items:center;padding:6px;}
+.order-drop.over{background:var(--lagoon);}
+
+.scorecard{
+  background:var(--paper);border:3px solid var(--ink);border-radius:28px;padding:28px 22px;
+  text-align:center;box-shadow:var(--shadow);margin-top:24px;display:none;
+}
+.scorecard.show{display:block;}
+.scorecard .big{font-family:'Fredoka',sans-serif;font-weight:700;font-size:clamp(3rem,13vw,5.4rem);line-height:1;}
+.scorecard .band{font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:600;margin:6px 0 4px;}
+.bar{height:22px;border:3px solid var(--ink);border-radius:999px;background:#eef8f7;overflow:hidden;margin:16px auto;max-width:460px;}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--reef),var(--leaf));transition:width .9s cubic-bezier(.3,1,.4,1);}
+.breakdown{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px;}
+.breakdown b{
+  font-size:.8rem;border:2px solid var(--ink);border-radius:999px;padding:4px 12px;background:var(--wash);
+}
+
+footer{padding:50px 0 60px;text-align:center;color:var(--ink-soft);font-weight:700;font-size:.9rem;}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);}
+:focus-visible{outline:4px solid var(--grape);outline-offset:3px;}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
+  html{scroll-behavior:auto;}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-badge"><span class="dot"></span> Adiaha's Science Lab · Term 1</div>
+    <h1>Life, ecosystems and the <span class="swim">wonder</span> of biodiversity</h1>
+    <p class="hero-sub">Eight lessons from your notebook, rebuilt so you can poke at them. Sort the chips, spin the wheel, tag the reef — then take on the big quiz at the end.</p>
+    <div class="hero-meta">
+      <span class="tagpill">Sept 1 – Sept 10, 2026</span>
+      <span class="tagpill">8 chapters</span>
+      <span class="tagpill">20-question final quiz</span>
+    </div>
+
+    <div class="spark">
+      <h3>Warm-up: is it alive?</h3>
+      <p class="hint">Three buttons, one honest trap. Pick what a scientist would say about a <b>fallen coconut husk on the beach</b>.</p>
+      <div class="spark-row">
+        <button class="spark-btn alive" data-sp="a">It's living</button>
+        <button class="spark-btn notalive" data-sp="b">It's non-living</button>
+        <button class="spark-btn wasalive" data-sp="c">It's dead — but it was once living</button>
+      </div>
+      <div class="spark-feedback" id="sparkFb"></div>
+    </div>
+  </div>
+</header>
+
+<nav class="chapnav" aria-label="Chapters">
+  <div class="wrap chapnav-inner">
+    <a href="#ch1">1 · Living &amp; non-living</a>
+    <a href="#ch2">2 · MRS GREN</a>
+    <a href="#ch3">3 · Biotic &amp; abiotic</a>
+    <a href="#ch4">4 · Biodiversity</a>
+    <a href="#ch5">5 · Why it matters</a>
+    <a href="#ch6">6 · Staying balanced</a>
+    <a href="#ch7">7 · Disruption &amp; resilience</a>
+    <a href="#ch8">8 · Disease defence</a>
+    <a href="#quiz" class="jumpquiz">Take the quiz</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ CHAPTER 1 ============ -->
+<section class="chapter c1" id="ch1">
+  <div class="chap-head">
+    <div class="chap-num">1</div>
+    <div>
+      <h2>Living and non-living things</h2>
+      <span class="lesson-date">Tuesday, September 1 · Learning goal: identify the characteristics of living and non-living things</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="defbox">
+      <b>Life processes</b> are the basic, continuous jobs that living organisms carry out to maintain their bodies, stay alive, and prevent breakdown.
+    </div>
+    <p>If something carries out those jobs, it is <b>living</b>. If it never has and never will, it is <b>non-living</b>. Everything in your environment falls into one group or the other.</p>
+
+    <div class="grid2">
+      <div class="minicard greenbg">
+        <h4>Living things</h4>
+        <ul class="tick green">
+          <li>Alive</li>
+          <li>Breathe and use oxygen</li>
+          <li>Move on their own</li>
+          <li>Blood flows, heart circulates (in animals)</li>
+          <li>Eat, or make their own food</li>
+          <li>Need nutrients to grow</li>
+        </ul>
+      </div>
+      <div class="minicard pinkbg">
+        <h4>Non-living things</h4>
+        <ul class="tick pink">
+          <li>Never alive</li>
+          <li>No heartbeat, no breathing</li>
+          <li>Idle — only moved by something else</li>
+          <li>Can't eat or take in nutrients</li>
+          <li>Can't sleep, grow or reproduce</li>
+          <li>But living things still depend on them</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="watchout">
+      <h4>Watch out — the trap in your notes</h4>
+      <p style="margin:0">Your notebook lists <i>"deceased"</i> and <i>"mummified"</i> under non-living. Careful: scientists split this into <b>three</b> groups. <b>Living</b> (a mango tree), <b>dead</b> — once living (a dried leaf, a fossil, a wooden desk), and <b>non-living</b> — never alive (a rock, seawater, sunlight). A dead thing was never non-living; it was living first. Examiners love this one.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Sort the chips</h3>
+    <p class="hint" style="color:var(--ink-soft);font-weight:700;font-size:.93rem">Drag each thing into the right bin. Use the ✕ on a chip to send it back.</p>
+    <div class="dnd" data-dnd="sortLiving">
+      <div class="pool" data-pool="sortLiving"></div>
+      <div class="bins two">
+        <div class="bin b-green" data-bin="living"><div class="bin-label"><span class="swatch"></span>Living</div><div class="bin-drop"></div></div>
+        <div class="bin b-pink" data-bin="nonliving"><div class="bin-label"><span class="swatch"></span>Non-living (never alive)</div><div class="bin-drop"></div></div>
+      </div>
+      <div class="btnrow">
+        <button class="act go" data-check="sortLiving">Check my sorting</button>
+        <button class="act ghostbtn" data-reset="sortLiving">Reset</button>
+        <span class="result" data-result="sortLiving"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 2 ============ -->
+<section class="chapter c2" id="ch2">
+  <div class="chap-head">
+    <div class="chap-num">2</div>
+    <div>
+      <h2>MRS GREN — the seven life processes</h2>
+      <span class="lesson-date">Your memory trick for everything that is alive</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <p><b>MRS GREN</b> is an acronym scientists use to remember the seven basic life processes that every living thing shares. If something does all seven, it's alive.</p>
+    <div class="grid2" style="align-items:center">
+      <div>
+        <div class="wheel" id="grenWheel">
+          <div class="wheel-core">MRS<br>GREN</div>
+        </div>
+      </div>
+      <div class="gren-panel" id="grenPanel">
+        <h4>Tap a circle</h4>
+        <p style="margin:0;font-weight:600">Each one opens its meaning plus a real example from around the world — the same ones you wrote in your notes.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Match the process to its example</h3>
+    <p style="color:var(--ink-soft);font-weight:700;font-size:.93rem">Drag the process name onto the example that shows it.</p>
+    <div class="dnd" data-dnd="grenMatch">
+      <div class="pool" data-pool="grenMatch"></div>
+      <div id="grenMatchRows"></div>
+      <div class="btnrow">
+        <button class="act go" data-check="grenMatch">Check my matches</button>
+        <button class="act ghostbtn" data-reset="grenMatch">Reset</button>
+        <span class="result" data-result="grenMatch"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 3 ============ -->
+<section class="chapter c3" id="ch3">
+  <div class="chap-head">
+    <div class="chap-num">3</div>
+    <div>
+      <h2>Biotic and abiotic factors</h2>
+      <span class="lesson-date">Wednesday, September 2 · Living and non-living things in our environment</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="defbox green"><b>Biotic factors</b> are the living parts of an ecosystem.</div>
+    <div class="defbox pink"><b>Abiotic factors</b> are the non-living parts of an ecosystem.</div>
+    <div class="defbox gold"><b>Factor</b> simply means something that affects a situation.</div>
+    <div class="defbox"><b>Ecosystem</b> — a community of living things together with the non-living surroundings they interact with.</div>
+    <p><b>Key science fact:</b> living things (biotic factors) carry out essential life processes such as nutrition, respiration, growth and reproduction. Non-living things (abiotic factors) do not carry out these processes — but living things depend on them to survive.</p>
+  </div>
+
+  <div class="card">
+    <h3>Tag the coral reef</h3>
+    <p style="color:var(--ink-soft);font-weight:700;font-size:.93rem">A coral reef in Australia. Tap each thing to label it. Tap again to switch your answer.</p>
+    <div class="reef">
+      <div class="reef-items" id="reefItems"></div>
+      <div class="reef-legend">
+        <span><i style="background:#c9f5d2"></i>Biotic</span>
+        <span><i style="background:#ffe2ec"></i>Abiotic</span>
+        <span><i style="background:rgba(255,255,255,.92)"></i>Untagged</span>
+      </div>
+    </div>
+    <div class="btnrow">
+      <button class="act go" id="reefCheck">Check the reef</button>
+      <button class="act ghostbtn" id="reefReset">Reset</button>
+      <span class="result" id="reefResult"></span>
+    </div>
+  </div>
+</section>
+<!-- ============ CHAPTER 4 ============ -->
+<section class="chapter c4" id="ch4">
+  <div class="chap-head">
+    <div class="chap-num">4</div>
+    <div>
+      <h2>The wonder of biodiversity</h2>
+      <span class="lesson-date">Monday, September 8 · Discovering why Earth needs every animal to survive</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="defbox green"><b>Biodiversity</b> — the variety of living organisms in an ecosystem. Widened out, it is the immense variety of all life on Earth: every living organism from tiny bacteria and plants to animals and humans, along with the communities and ecosystems they come from.</div>
+    <div class="defbox"><b>Ecosystem</b> — living organisms interacting with their physical environment.</div>
+    <div class="defbox gold"><b>Habitat</b> — the place where an organism lives, finds food and gets shelter.</div>
+    <div class="defbox pink"><b>Resilience</b> — the ability of an ecosystem to recover after a disruption and return to a healthy state.</div>
+    <p style="margin-top:14px"><b>Key point:</b> greater variety means a stronger, healthier ecosystem for all living things.</p>
+
+    <div class="watchout" style="border-color:var(--reef);background:#effbfa">
+      <h4 style="color:var(--reef-deep)">Three words people mix up</h4>
+      <p style="margin:0">A <b>habitat</b> is an <i>address</i> — where one organism lives. An <b>ecosystem</b> is the <i>whole neighbourhood</i> — every organism plus the soil, water, light and air they interact with. <b>Biodiversity</b> is the <i>head count of different kinds</i> living in it.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Which word fits?</h3>
+    <p style="color:var(--ink-soft);font-weight:700;font-size:.93rem">Drag one word into each sentence.</p>
+    <div class="dnd" data-dnd="vocabBlanks">
+      <div class="pool" data-pool="vocabBlanks"></div>
+      <div id="vocabBlankLines" style="margin-top:14px"></div>
+      <div class="btnrow">
+        <button class="act go" data-check="vocabBlanks">Check my sentences</button>
+        <button class="act ghostbtn" data-reset="vocabBlanks">Reset</button>
+        <span class="result" data-result="vocabBlanks"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 5 ============ -->
+<section class="chapter c5" id="ch5">
+  <div class="chap-head">
+    <div class="chap-num">5</div>
+    <div>
+      <h2>Three gifts biodiversity gives humans</h2>
+      <span class="lesson-date">Tap each card to flip it over</span>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="flip" tabindex="0"><div class="flip-in">
+      <div class="flip-face minicard greenbg"><h4>Food and nutrition</h4><p style="margin:0;font-size:.95rem">What ends up on your plate.</p><span class="tapme">Tap to flip</span></div>
+      <div class="flip-face flip-back"><h4>Food and nutrition</h4><p style="margin:0;font-size:.95rem">Crops, fruits and fish rely on wild genetic variety and on animal pollinators. Lose the pollinators and the harvest shrinks.</p></div>
+    </div></div>
+    <div class="flip" tabindex="0"><div class="flip-in">
+      <div class="flip-face minicard pinkbg"><h4>Medicine and health</h4><p style="margin:0;font-size:.95rem">What's in the pharmacy.</p><span class="tapme">Tap to flip</span></div>
+      <div class="flip-face flip-back"><h4>Medicine and health</h4><p style="margin:0;font-size:.95rem">Over half of modern medicines originate from compounds first discovered in wild plants and fungi.</p></div>
+    </div></div>
+    <div class="flip" tabindex="0"><div class="flip-in">
+      <div class="flip-face minicard goldbg"><h4>Useful materials</h4><p style="margin:0;font-size:.95rem">What you build and wear.</p><span class="tapme">Tap to flip</span></div>
+      <div class="flip-face flip-back"><h4>Useful materials</h4><p style="margin:0;font-size:.95rem">Timber, natural cotton, rubber and plant fibres provide shelter and everyday clothing.</p></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 6 ============ -->
+<section class="chapter c6" id="ch6">
+  <div class="chap-head">
+    <div class="chap-num">6</div>
+    <div>
+      <h2>How ecosystems stay balanced</h2>
+      <span class="lesson-date">Tuesday, September 9 · Four jobs, done by different species</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <p>Across the world, species depend on one another. Four jobs keep the whole system turning — tap each to see who does it.</p>
+    <div class="reveal-grid">
+      <div class="reveal" tabindex="0"><h4>Plants</h4><span class="cue">Tap</span><div class="body">Make food using sunlight. They are the starting point of almost every food chain, so everything above them depends on them.</div></div>
+      <div class="reveal" tabindex="0"><h4>Pollinators</h4><span class="cue">Tap</span><div class="body">Bees, birds, bats and butterflies help plants reproduce by carrying pollen from flower to flower. No pollinators, no seeds or fruit.</div></div>
+      <div class="reveal" tabindex="0"><h4>Predators</h4><span class="cue">Tap</span><div class="body">Keep prey numbers balanced. Without them one species would multiply and eat out the whole food supply.</div></div>
+      <div class="reveal" tabindex="0"><h4>Decomposers</h4><span class="cue">Tap</span><div class="body">Fungi, worms and bacteria break down dead matter and return nutrients to the soil so plants can use them again.</div></div>
+    </div>
+    <p style="margin-top:18px"><b>Why it holds together:</b> biodiversity creates many connections. If one species struggles, another can often step in and keep the system working.</p>
+  </div>
+
+  <div class="card">
+    <h3>Think it through: the mangrove decision</h3>
+    <p>Somewhere in the world, people plan to clear a coastal mangrove to build shops. What ecological risks should they consider before deciding?</p>
+    <div class="reveal" tabindex="0" style="text-align:left"><h4>Show a strong answer</h4><span class="cue">Tap to open</span><div class="body">
+      <ul class="tick" style="margin-top:4px">
+        <li>Mangrove roots are a <b>nursery habitat</b> — young fish shelter there, so fish catches fall for years afterwards.</li>
+        <li>The roots trap sediment and break wave energy, so the coast loses its <b>natural storm and erosion defence</b> in hurricane season.</li>
+        <li><b>Biodiversity drops</b> — birds, crabs and fish lose food, shelter and breeding places at once.</li>
+        <li>Less biodiversity means lower <b>resilience</b>: after the next storm the coast recovers more slowly, or not at all.</li>
+        <li>Nutrients that mangroves normally cycle into the water are lost, affecting nearby <b>seagrass and coral reefs</b> too.</li>
+      </ul>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 7 ============ -->
+<section class="chapter c7" id="ch7">
+  <div class="chap-head">
+    <div class="chap-num">7</div>
+    <div>
+      <h2>Disruption and resilience</h2>
+      <span class="lesson-date">When something big goes wrong — and how nature comes back</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="defbox pink"><b>Disruption</b> — a sudden or major change that harms an ecosystem.</div>
+    <div class="defbox green"><b>Resilience</b> — the ability of an ecosystem to recover after a disruption and return to a healthy state.</div>
+    <p>A disruption can remove <b>food, shelter or breeding places</b>. The effects reach coral reefs, grasslands, forests, lakes, wetlands and even city parks around the world. <b>Biodiversity supports resilience</b>: if one species is affected, another may help keep the ecosystem working.</p>
+  </div>
+
+  <div class="card">
+    <h3>Natural or human?</h3>
+    <p style="color:var(--ink-soft);font-weight:700;font-size:.93rem">Drag each cause into the bin where it belongs.</p>
+    <div class="dnd" data-dnd="causeSort">
+      <div class="pool" data-pool="causeSort"></div>
+      <div class="bins two">
+        <div class="bin b-gold" data-bin="natural"><div class="bin-label"><span class="swatch"></span>Natural causes</div><div class="bin-drop"></div></div>
+        <div class="bin b-grape" data-bin="human"><div class="bin-label"><span class="swatch"></span>Human causes</div><div class="bin-drop"></div></div>
+      </div>
+      <div class="btnrow">
+        <button class="act go" data-check="causeSort">Check my sorting</button>
+        <button class="act ghostbtn" data-reset="causeSort">Reset</button>
+        <span class="result" data-result="causeSort"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHAPTER 8 ============ -->
+<section class="chapter c8" id="ch8">
+  <div class="chap-head">
+    <div class="chap-num">8</div>
+    <div>
+      <h2>How biodiversity fights disease</h2>
+      <span class="lesson-date">Thursday, September 10 · The dilution effect</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="defbox green"><b>The dilution effect (ecosystem level)</b> — when an ecosystem has high species diversity, pathogens such as viruses, bacteria and parasites have a harder time spreading.</div>
+    <div class="defbox gold"><b>Host regulation</b> — many pathogens rely on one specific <i>competent</i> host species to replicate in. In a diverse ecosystem, a disease-carrying insect such as a tick or mosquito is far more likely to land on an <i>incompetent</i> host — a species the pathogen cannot replicate in.</div>
+    <div class="defbox pink"><b>Buffered transmission</b> — every landing on an incompetent host "wastes" the pathogen's chance to spread. That dilutes the disease's prevalence in the environment and protects vulnerable species.</div>
+  </div>
+
+  <div class="card">
+    <h3>Run the mosquito experiment</h3>
+    <p style="color:var(--ink-soft);font-weight:700;font-size:.93rem">Same mosquito, same disease, two different forests. Send in 20 bites and watch what happens.</p>
+    <div class="sim">
+      <div class="sim-toggle">
+        <button data-sim="low" class="on">Low-diversity forest</button>
+        <button data-sim="high">High-diversity forest</button>
+      </div>
+      <div class="sim-field" id="simField"></div>
+      <div class="sim-stats">
+        <div><span class="n" id="simBites">0</span>bites sent</div>
+        <div><span class="n" id="simHits" style="color:var(--hibiscus-deep)">0</span>landed on a competent host</div>
+        <div><span class="n" id="simWaste" style="color:var(--leaf-deep)">0</span>wasted on an incompetent host</div>
+      </div>
+      <div class="btnrow">
+        <button class="act go" id="simRun">Send 20 bites</button>
+        <button class="act ghostbtn" id="simReset">Reset</button>
+      </div>
+      <div class="sim-note" id="simNote">Pink squares are competent hosts — the pathogen can replicate in them. Green squares are incompetent hosts.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="watchout">
+      <h4>The question you got wrong — fix it now</h4>
+      <p><b>Why does a forest with many different tree species recover faster after disease strikes?</b></p>
+      <p style="margin:0 0 6px"><span style="color:var(--hibiscus-deep);font-weight:900">✗</span> "Animals will instantly plant new seeds to replace fallen trees." Animals do disperse seeds, but not instantly and not on purpose — this isn't the reason.</p>
+      <p style="margin:0"><span style="color:var(--leaf-deep);font-weight:900">✓</span> A disease usually attacks <b>one</b> species. In a mixed forest the other tree species survive, so the canopy, the soil and animal shelter are all maintained while the affected species regrows. In a single-species forest, one disease can take everything down at once.</p>
+    </div>
+  </div>
+</section>
+<!-- ============ QUIZ ============ -->
+<section id="quiz">
+  <div class="quiz-hero">
+    <h2>The big one</h2>
+    <p>Twenty questions covering all eight chapters. No typing — everything is tapping, dragging and choosing. Some questions have more than one right answer, and a few are deliberately sneaky. Answer them all, then check.</p>
+    <div class="qmeta">
+      <span>20 questions</span><span>36 points</span><span>7 question types</span><span>Pass mark: 70%</span>
+    </div>
+  </div>
+
+  <div id="quizBody"></div>
+
+  <div class="btnrow" style="justify-content:center;margin:24px 0">
+    <button class="act go" id="quizCheck" style="font-size:1.15rem;padding:14px 28px">Check my answers</button>
+    <button class="act ghostbtn" id="quizReset">Start over</button>
+  </div>
+
+  <div class="scorecard" id="scorecard">
+    <div class="big" id="scoreBig">0%</div>
+    <div class="band" id="scoreBand"></div>
+    <div class="bar"><i id="scoreBar"></i></div>
+    <p id="scoreMsg" style="font-weight:700;max-width:52ch;margin:0 auto"></p>
+    <div class="breakdown" id="scoreBreak"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Built for Adiaha · Science, Term 1 · Every fact here comes from your own notebook<br>Scroll back up any time — the chapters don't reset.</div>
+</footer>
+
+<style>
+.bin-drop.over{background:var(--lagoon);border-radius:12px;}
+.bin.over{background:var(--lagoon);}
+</style>
+<script>
+/* ========================================================
+   SHARED DRAG-AND-DROP ENGINE
+   Every chip: data-group, data-ans (the data-key of the zone
+   it belongs in, or "pool" if it is a distractor).
+   Every drop zone: data-drop, data-group, data-key, data-cap.
+   ======================================================== */
+let dragChip=null, ghostEl=null, overZone=null;
+
+function setOver(z){
+  if(overZone===z) return;
+  clearOver();
+  overZone=z;
+  z.classList.add('over');
+  const bin=z.closest('.bin'); if(bin) bin.classList.add('over');
+}
+function clearOver(){
+  document.querySelectorAll('.over').forEach(e=>e.classList.remove('over'));
+  overZone=null;
+}
+function poolOf(group){return document.querySelector('[data-pool="'+group+'"]');}
+
+function addX(chip){
+  if(chip.querySelector('.x')) return;
+  const b=document.createElement('button');
+  b.className='x'; b.type='button'; b.textContent='\u2715';
+  b.setAttribute('aria-label','Remove');
+  b.addEventListener('click',ev=>{ev.stopPropagation();returnToPool(chip);});
+  chip.appendChild(b);
+}
+function removeX(chip){const b=chip.querySelector('.x'); if(b) b.remove();}
+
+function returnToPool(chip){
+  removeX(chip);
+  chip.classList.remove('right','wrong');
+  poolOf(chip.dataset.group).appendChild(chip);
+}
+function placeChip(chip,zone){
+  const cap=parseInt(zone.dataset.cap||'99',10);
+  if(zone.children.length>=cap){
+    Array.from(zone.children).forEach(c=>{ if(c!==chip) returnToPool(c); });
+  }
+  chip.classList.remove('right','wrong');
+  zone.appendChild(chip);
+  addX(chip);
+}
+
+function makeChip(group,id,label,ans){
+  const c=document.createElement('div');
+  c.className='chip'; c.draggable=true;
+  c.dataset.group=group; c.dataset.id=id; c.dataset.ans=ans;
+  const s=document.createElement('span'); s.textContent=label; c.appendChild(s);
+  c.addEventListener('dragstart',e=>{
+    dragChip=c; c.classList.add('dragging');
+    e.dataTransfer.effectAllowed='move';
+    try{e.dataTransfer.setData('text/plain',id);}catch(err){}
+  });
+  c.addEventListener('dragend',()=>{c.classList.remove('dragging');dragChip=null;clearOver();});
+  c.addEventListener('touchstart',touchStart,{passive:false});
+  return c;
+}
+
+function touchStart(e){
+  if(e.target.classList && e.target.classList.contains('x')) return;
+  const chip=e.currentTarget, t=e.touches[0];
+  dragChip=chip;
+  ghostEl=chip.cloneNode(true);
+  ghostEl.classList.add('ghost');
+  ghostEl.style.left=t.clientX+'px'; ghostEl.style.top=t.clientY+'px';
+  document.body.appendChild(ghostEl);
+  chip.classList.add('dragging');
+  e.preventDefault();
+  document.addEventListener('touchmove',touchMove,{passive:false});
+  document.addEventListener('touchend',touchEnd);
+  document.addEventListener('touchcancel',touchEnd);
+}
+function touchMove(e){
+  if(!ghostEl) return;
+  const t=e.touches[0];
+  ghostEl.style.left=t.clientX+'px'; ghostEl.style.top=t.clientY+'px';
+  const el=document.elementFromPoint(t.clientX,t.clientY);
+  const z=el?el.closest('[data-drop]'):null;
+  if(z && z.dataset.group===dragChip.dataset.group) setOver(z); else clearOver();
+  e.preventDefault();
+}
+function touchEnd(e){
+  document.removeEventListener('touchmove',touchMove);
+  document.removeEventListener('touchend',touchEnd);
+  document.removeEventListener('touchcancel',touchEnd);
+  if(ghostEl){ghostEl.remove();ghostEl=null;}
+  if(dragChip){
+    dragChip.classList.remove('dragging');
+    if(overZone) placeChip(dragChip,overZone);
+  }
+  clearOver(); dragChip=null;
+}
+
+document.addEventListener('dragover',e=>{
+  if(!dragChip) return;
+  const z=e.target.closest ? e.target.closest('[data-drop]') : null;
+  if(z && z.dataset.group===dragChip.dataset.group){e.preventDefault();e.dataTransfer.dropEffect='move';setOver(z);}
+});
+document.addEventListener('dragleave',e=>{
+  const z=e.target.closest ? e.target.closest('[data-drop]') : null;
+  if(z && z===overZone && !z.contains(e.relatedTarget)) clearOver();
+});
+document.addEventListener('drop',e=>{
+  if(!dragChip) return;
+  const z=e.target.closest ? e.target.closest('[data-drop]') : null;
+  if(z && z.dataset.group===dragChip.dataset.group){e.preventDefault();placeChip(dragChip,z);}
+  clearOver();
+});
+
+/* score any drag group: chip is right when its parent zone key === its answer */
+function scoreGroup(group,mark){
+  let ok=0,total=0;
+  document.querySelectorAll('.chip[data-group="'+group+'"]').forEach(c=>{
+    total++;
+    const key=c.parentElement.dataset.key||'pool';
+    const right=(key===c.dataset.ans);
+    if(right) ok++;
+    if(mark){c.classList.remove('right','wrong');c.classList.add(right?'right':'wrong');}
+  });
+  return {ok:ok,total:total};
+}
+function resetGroup(group){
+  document.querySelectorAll('.chip[data-group="'+group+'"]').forEach(c=>returnToPool(c));
+  shufflePool(group);
+}
+function shufflePool(group){
+  const p=poolOf(group);
+  const kids=Array.from(p.children);
+  for(let i=kids.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));p.appendChild(kids[j]);kids.splice(j,1);}
+  kids.forEach(k=>p.appendChild(k));
+}
+function buildPool(group,items){
+  const p=poolOf(group);
+  p.dataset.key='pool';
+  items.slice().sort(()=>Math.random()-0.5).forEach(it=>p.appendChild(makeChip(group,it.id,it.label,it.ans)));
+}
+function prepBins(group){
+  document.querySelectorAll('[data-dnd="'+group+'"] .bin').forEach(b=>{
+    const d=b.querySelector('.bin-drop');
+    d.dataset.drop='1'; d.dataset.group=group; d.dataset.key=b.dataset.bin;
+  });
+}
+
+/* generic check / reset buttons in the study sections */
+function wireCheck(group,msgFn){
+  const btn=document.querySelector('[data-check="'+group+'"]');
+  const rs=document.querySelector('[data-reset="'+group+'"]');
+  const out=document.querySelector('[data-result="'+group+'"]');
+  if(btn) btn.addEventListener('click',()=>{
+    const s=scoreGroup(group,true);
+    out.textContent=msgFn?msgFn(s):(s.ok+' / '+s.total+' correct');
+    out.className='result '+(s.ok===s.total?'good':'bad');
+  });
+  if(rs) rs.addEventListener('click',()=>{resetGroup(group);out.textContent='';});
+}
+
+/* ========== HERO WARM-UP ========== */
+document.querySelectorAll('.spark-btn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const fb=document.getElementById('sparkFb');
+    const v=b.dataset.sp;
+    if(v==='c'){fb.textContent='Exactly. A coconut husk grew on a living palm, so it is dead — not non-living. Non-living means never alive, like a rock or seawater.';fb.style.color='var(--leaf-deep)';}
+    else if(v==='a'){fb.textContent='Not quite. It has stopped carrying out life processes, so it is no longer living.';fb.style.color='var(--hibiscus-deep)';}
+    else {fb.textContent='This is the trap. Non-living means never alive. The husk was part of a living palm, so it is dead, not non-living.';fb.style.color='var(--mango-deep)';}
+  });
+});
+
+/* ========== CH1: living / non-living sort ========== */
+prepBins('sortLiving');
+buildPool('sortLiving',[
+  {id:'l1',label:'Mango tree',ans:'living'},
+  {id:'l2',label:'Coral polyp',ans:'living'},
+  {id:'l3',label:'Bacteria',ans:'living'},
+  {id:'l4',label:'Hummingbird',ans:'living'},
+  {id:'l5',label:'Sea urchin',ans:'living'},
+  {id:'n1',label:'Seawater',ans:'nonliving'},
+  {id:'n2',label:'Sunlight',ans:'nonliving'},
+  {id:'n3',label:'Volcanic rock',ans:'nonliving'},
+  {id:'n4',label:'Air temperature',ans:'nonliving'},
+  {id:'n5',label:'Rainwater',ans:'nonliving'}
+]);
+wireCheck('sortLiving',s=>s.ok===s.total?'All 10 right — nothing left in the pool either.':s.ok+' of '+s.total+' in the right place. Green chips are correct.');
+
+/* ========== CH2: MRS GREN wheel ========== */
+const GREN=[
+  {L:'M',name:'Movement',def:'All living things move, even if it is only a plant turning toward the light.',where:'Right here in the Caribbean',ex:'A child walks, a bird flies, and a poui tree\u2019s roots grow downwards while its shoots grow toward sunlight.',c:'var(--reef)'},
+  {L:'R',name:'Respiration',def:'Breaking down food molecules inside cells to release energy.',where:'Kenya',ex:'A runner needs oxygen and food energy so her muscles keep working.',c:'var(--hibiscus)'},
+  {L:'S',name:'Sensitivity',def:'Detecting and reacting to changes in the environment.',where:'South Africa',ex:'A sunflower responds to light by growing towards it.',c:'var(--mango)'},
+  {L:'G',name:'Growth',def:'Getting larger over time.',where:'Japan',ex:'A young cherry tree grows taller and develops branches, leaves and flowers.',c:'var(--leaf)'},
+  {L:'R',name:'Reproduction',def:'Making new offspring.',where:'New Zealand',ex:'New kiwi birds hatch and replace older birds in the population.',c:'var(--grape)'},
+  {L:'E',name:'Excretion',def:'Getting rid of waste.',where:'Iceland',ex:'Humans still excrete waste even though the climate is freezing.',c:'var(--reef-deep)'},
+  {L:'N',name:'Nutrition',def:'Taking in food and nutrients to power energy and growth.',where:'India',ex:'A cow gets nutrition by eating grass, while a rice plant makes its own food in a paddy field.',c:'var(--hibiscus-deep)'}
+];
+(function(){
+  const w=document.getElementById('grenWheel'), panel=document.getElementById('grenPanel');
+  GREN.forEach((g,i)=>{
+    const a=(-90+i*(360/GREN.length))*Math.PI/180;
+    const p=document.createElement('button');
+    p.className='petal'; p.type='button';
+    p.style.left=(50+35*Math.cos(a))+'%';
+    p.style.top=(50+35*Math.sin(a))+'%';
+    p.style.background=g.c;
+    p.style.color=(g.L==='S'||g.L==='G')?'var(--ink)':'#fff';
+    p.innerHTML='<div><span class="letter">'+g.L+'</span>'+g.name+'</div>';
+    p.addEventListener('click',()=>{
+      w.querySelectorAll('.petal').forEach(x=>x.classList.remove('active'));
+      p.classList.add('active');
+      panel.innerHTML='<span class="where">'+g.where+'</span><h4>'+g.L+' \u2014 '+g.name+'</h4><p style="font-weight:700;margin-bottom:8px">'+g.def+'</p><p style="margin:0">'+g.ex+'</p>';
+    });
+    w.appendChild(p);
+  });
+})();
+
+/* ========== CH2: match process to example ========== */
+const GRENPAIRS=[
+  {id:'g1',t:'Nutrition',d:'In India, a cow gets nutrition by eating grass, while a rice plant makes its own food.'},
+  {id:'g2',t:'Respiration',d:'A runner in Kenya needs oxygen and food energy so her muscles keep working.'},
+  {id:'g3',t:'Growth',d:'In Japan, a young cherry tree grows taller and develops branches, leaves and flowers.'},
+  {id:'g4',t:'Sensitivity',d:'A sunflower in South Africa responds to light by growing towards it.'},
+  {id:'g5',t:'Excretion',d:'In Iceland, humans still get rid of waste even though the climate is cold.'},
+  {id:'g6',t:'Reproduction',d:'New kiwi birds hatch in New Zealand and replace the older birds.'},
+  {id:'g7',t:'Movement',d:'A child walks, a bird flies, and a poui tree\u2019s roots grow down while its shoots grow up.'}
+];
+(function(){
+  const rows=document.getElementById('grenMatchRows');
+  GRENPAIRS.slice().sort(()=>Math.random()-0.5).forEach(p=>{
+    const r=document.createElement('div');
+    r.className='match-row';
+    r.innerHTML='<div class="match-slot" data-drop="1" data-group="grenMatch" data-key="'+p.id+'" data-cap="1"></div><div class="match-def">'+p.d+'</div>';
+    rows.appendChild(r);
+  });
+  buildPool('grenMatch',GRENPAIRS.map(p=>({id:p.id,label:p.t,ans:p.id})));
+  wireCheck('grenMatch',s=>s.ok===s.total?'All seven matched. That is MRS GREN locked in.':s.ok+' of '+s.total+' matched correctly.');
+})();
+
+/* ========== CH3: reef tagging ========== */
+const REEF=[
+  {n:'Coral polyps',a:'bio'},{n:'Parrotfish',a:'bio'},{n:'Sea turtle',a:'bio'},
+  {n:'Seagrass',a:'bio'},{n:'Sponges',a:'bio'},
+  {n:'Seawater',a:'abio'},{n:'Sunlight',a:'abio'},{n:'Water temperature',a:'abio'},
+  {n:'Sand',a:'abio'},{n:'Dissolved oxygen',a:'abio'}
+];
+(function(){
+  const box=document.getElementById('reefItems');
+  REEF.slice().sort(()=>Math.random()-0.5).forEach(it=>{
+    const b=document.createElement('button');
+    b.className='reef-item'; b.type='button'; b.textContent=it.n; b.dataset.a=it.a; b.dataset.tag='';
+    b.addEventListener('click',()=>{
+      b.classList.remove('miss');
+      const cur=b.dataset.tag;
+      const next=cur===''?'bio':(cur==='bio'?'abio':'');
+      b.dataset.tag=next;
+      b.classList.remove('tag-bio','tag-abio');
+      if(next) b.classList.add('tag-'+next);
+    });
+    box.appendChild(b);
+  });
+  document.getElementById('reefCheck').addEventListener('click',()=>{
+    let ok=0,un=0;
+    box.querySelectorAll('.reef-item').forEach(b=>{
+      b.classList.remove('miss');
+      if(b.dataset.tag==='') {un++; b.classList.add('miss');}
+      else if(b.dataset.tag===b.dataset.a) ok++;
+      else b.classList.add('miss');
+    });
+    const r=document.getElementById('reefResult');
+    r.textContent=un?(ok+' of 10 right \u2014 '+un+' still untagged (outlined in gold).'):(ok===10?'All 10 correct. Living parts are biotic, non-living parts are abiotic.':ok+' of 10 right. The gold outlines are the ones to rethink.');
+    r.className='result '+(ok===10?'good':'bad');
+  });
+  document.getElementById('reefReset').addEventListener('click',()=>{
+    box.querySelectorAll('.reef-item').forEach(b=>{b.dataset.tag='';b.className='reef-item';});
+    document.getElementById('reefResult').textContent='';
+  });
+})();
+</script>
+<script>
+/* ========== CH4: vocabulary blanks ========== */
+const VOCAB=[
+  {k:'v1',before:'The place where an organism lives, finds food and gets shelter is its ',after:'.'},
+  {k:'v2',before:'The variety of living organisms in an ecosystem is called ',after:'.'},
+  {k:'v3',before:'Living organisms interacting with their physical environment make up an ',after:'.'},
+  {k:'v4',before:'The ability of an ecosystem to recover after a disruption and return to a healthy state is ',after:'.'},
+  {k:'v5',before:'Organisms that break down dead matter and return nutrients to the soil are ',after:'.'}
+];
+(function(){
+  const box=document.getElementById('vocabBlankLines');
+  VOCAB.forEach(v=>{
+    const p=document.createElement('p');
+    p.className='blank-line';
+    p.innerHTML=v.before+'<span class="blank-slot" data-drop="1" data-group="vocabBlanks" data-key="'+v.k+'" data-cap="1"></span>'+v.after;
+    box.appendChild(p);
+  });
+  buildPool('vocabBlanks',[
+    {id:'w1',label:'habitat',ans:'v1'},
+    {id:'w2',label:'biodiversity',ans:'v2'},
+    {id:'w3',label:'ecosystem',ans:'v3'},
+    {id:'w4',label:'resilience',ans:'v4'},
+    {id:'w5',label:'decomposers',ans:'v5'},
+    {id:'w6',label:'pollinators',ans:'pool'},
+    {id:'w7',label:'predators',ans:'pool'}
+  ]);
+  wireCheck('vocabBlanks',s=>s.ok===s.total?'All five sentences right \u2014 and you spotted the two words that were never needed.':s.ok+' of '+s.total+' chips in the right place. Two words are extras and belong in the pool.');
+})();
+
+/* ========== CH5 + CH6: flip cards and reveals ========== */
+document.querySelectorAll('.flip').forEach(f=>{
+  const go=()=>f.classList.toggle('on');
+  f.addEventListener('click',go);
+  f.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+});
+document.querySelectorAll('.reveal').forEach(r=>{
+  const go=()=>r.classList.toggle('open');
+  r.addEventListener('click',go);
+  r.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+});
+
+/* ========== CH7: natural vs human causes ========== */
+prepBins('causeSort');
+buildPool('causeSort',[
+  {id:'c1',label:'Hurricanes',ans:'natural'},
+  {id:'c2',label:'Droughts',ans:'natural'},
+  {id:'c3',label:'Floods',ans:'natural'},
+  {id:'c4',label:'Wildfires',ans:'natural'},
+  {id:'c5',label:'Volcanic eruptions',ans:'natural'},
+  {id:'c6',label:'Pollution',ans:'human'},
+  {id:'c7',label:'Deforestation',ans:'human'},
+  {id:'c8',label:'Invasive species',ans:'human'},
+  {id:'c9',label:'Overfishing',ans:'human'}
+]);
+wireCheck('causeSort',s=>s.ok===s.total?'All nine sorted. Natural causes come from the planet, human causes come from us.':s.ok+' of '+s.total+' correct.');
+
+/* ========== CH8: mosquito simulation ========== */
+(function(){
+  const field=document.getElementById('simField');
+  const CELLS=40;
+  let mode='low', bites=0, hits=0, waste=0, cells=[];
+  function build(){
+    field.innerHTML=''; cells=[];
+    const compRate = (mode==='low') ? 0.80 : 0.20;
+    for(let i=0;i<CELLS;i++){
+      const comp = i < Math.round(CELLS*compRate);
+      cells.push(comp);
+    }
+    cells.sort(()=>Math.random()-0.5);
+    cells.forEach(c=>{
+      const d=document.createElement('div');
+      d.className='host '+(c?'comp':'incomp');
+      d.textContent=c?'\u25CF':'\u25CB';
+      field.appendChild(d);
+    });
+  }
+  function stats(){
+    document.getElementById('simBites').textContent=bites;
+    document.getElementById('simHits').textContent=hits;
+    document.getElementById('simWaste').textContent=waste;
+  }
+  function reset(){bites=0;hits=0;waste=0;stats();build();
+    document.getElementById('simNote').textContent='Pink squares are competent hosts \u2014 the pathogen can replicate in them. Green squares are incompetent hosts.';}
+  document.querySelectorAll('[data-sim]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('[data-sim]').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on'); mode=b.dataset.sim; reset();
+    });
+  });
+  document.getElementById('simReset').addEventListener('click',reset);
+  document.getElementById('simRun').addEventListener('click',()=>{
+    const kids=field.children; let n=0;
+    const tick=setInterval(()=>{
+      const i=Math.floor(Math.random()*CELLS);
+      Array.from(kids).forEach(k=>k.classList.remove('hit'));
+      kids[i].classList.add('hit');
+      bites++; if(cells[i]) hits++; else waste++;
+      stats(); n++;
+      if(n>=20){
+        clearInterval(tick);
+        const pct=Math.round(hits/bites*100);
+        document.getElementById('simNote').textContent=
+          (mode==='low')
+          ? 'In the low-diversity forest '+pct+'% of bites hit a host the pathogen can replicate in. The disease races through.'
+          : 'In the high-diversity forest only '+pct+'% of bites hit a competent host. The rest were wasted on incompetent hosts \u2014 that is buffered transmission diluting the disease.';
+      }
+    },70);
+  });
+  reset();
+})();
+
+/* ========================================================
+   QUIZ
+   ======================================================== */
+const QUIZ=[
+ {type:'mcq',pts:1,q:'Amara finds a dried, brown leaf on the ground. How should she classify it?',
+  opts:['It is non-living, because it does not move or breathe','It is dead \u2014 it was once living but has stopped carrying out life processes','It is living, because it still contains water','It is abiotic, because it cannot reproduce'],a:1,
+  fb:'Non-living means <b>never</b> alive. A dried leaf grew on a living tree, so it is dead, not non-living.'},
+
+ {type:'mcq',pts:1,q:'In MRS GREN, what does the S stand for?',
+  opts:['Shelter','Survival','Sensitivity','Structure'],a:2,
+  fb:'S is Sensitivity \u2014 detecting and reacting to changes in the environment.'},
+
+ {type:'tf',pts:1,q:'Non-living things carry out life processes such as respiration and reproduction.',a:false,
+  fb:'False. Non-living things do not carry out life processes \u2014 but living things still depend on them to survive.'},
+
+ {type:'mcq',pts:1,q:'Which of these is an abiotic factor in an Australian coral reef?',
+  opts:['Coral polyps','Parrotfish','Water temperature','Sponges'],a:2,
+  fb:'Water temperature is non-living, so it is abiotic. The other three are living \u2014 biotic.'},
+
+ {type:'mcq',pts:1,q:'Which definition of biodiversity is the most complete?',
+  opts:['The number of animals living in a forest','The variety of living organisms in an ecosystem, from tiny bacteria to plants, animals and humans','The place where an organism finds food and shelter','The ability of an ecosystem to recover after damage'],a:1,
+  fb:'Option 3 defines habitat and option 4 defines resilience \u2014 two classic mix-ups.'},
+
+ {type:'tf',pts:1,q:'A habitat and an ecosystem mean the same thing.',a:false,
+  fb:'False. A habitat is where one organism lives. An ecosystem is the whole community of living things plus the non-living surroundings they interact with.'},
+
+ {type:'multi',pts:3,q:'Select every HUMAN cause of ecosystem disruption.',
+  opts:['Pollution','Hurricanes','Deforestation','Volcanic eruptions','Overfishing','Invasive species'],a:[0,2,4,5],
+  fb:'Pollution, deforestation, overfishing and invasive species come from people. Hurricanes and volcanic eruptions are natural.'},
+
+ {type:'mcq',pts:1,q:'Over half of modern medicines originate from\u2026',
+  opts:['Minerals dug out of rock','Compounds first discovered in wild plants and fungi','Seawater and dissolved oxygen','Materials made only in laboratories'],a:1,
+  fb:'This is one of the three big gifts biodiversity gives humans.'},
+
+ {type:'tf',pts:1,q:'Biodiversity supports resilience: if one species is affected, another may help keep the ecosystem working.',a:true,
+  fb:'True \u2014 that is exactly why variety makes an ecosystem stronger.'},
+
+ {type:'mcq',pts:2,q:'A disease strikes a forest that contains many different tree species. Why does this forest recover faster than a forest of only one species?',
+  opts:['Animals instantly plant new seeds to replace the fallen trees','The other tree species survive and keep maintaining the soil and animal shelter','Diseases cannot survive in forests with more than one kind of tree','More trees means the disease has less space to grow'],a:1,
+  fb:'A disease usually attacks one species. In a mixed forest the rest survive and hold the system together while the affected species regrows.'},
+
+ {type:'mcq',pts:1,q:'In the dilution effect, an "incompetent host" is\u2026',
+  opts:['An animal that is too weak to survive the disease','A species the pathogen cannot replicate inside','A predator that eats disease-carrying insects','An insect that carries the pathogen badly'],a:1,
+  fb:'Landing on an incompetent host wastes the pathogen\u2019s chance to spread \u2014 that is buffered transmission.'},
+
+ {type:'match',pts:6,q:'Drag each term onto its definition.',
+  pairs:[
+   {id:'m1',t:'Biodiversity',d:'The variety of living organisms in an ecosystem'},
+   {id:'m2',t:'Ecosystem',d:'Living organisms interacting with their physical environment'},
+   {id:'m3',t:'Habitat',d:'The place where an organism lives, finds food and gets shelter'},
+   {id:'m4',t:'Resilience',d:'The ability to recover after a disruption and return to a healthy state'},
+   {id:'m5',t:'Disruption',d:'A sudden or major change that harms an ecosystem'},
+   {id:'m6',t:'Factor',d:'Something that affects a situation'}
+  ],
+  fb:'Habitat is an address, ecosystem is the whole neighbourhood, biodiversity is the head count of different kinds.'},
+
+ {type:'sort',pts:4,q:'Sort these parts of a mangrove ecosystem.',
+  bins:[{k:'bio',label:'Biotic'},{k:'abio',label:'Abiotic'}],
+  chips:[{l:'Mangrove roots',a:'bio'},{l:'Young fish',a:'bio'},{l:'Crabs',a:'bio'},{l:'Seabirds',a:'bio'},
+         {l:'Salt water',a:'abio'},{l:'Sunlight',a:'abio'},{l:'Mud and sediment',a:'abio'},{l:'Air temperature',a:'abio'}],
+  fb:'Biotic parts are alive. Abiotic parts were never alive, but every living thing there depends on them.'},
+
+ {type:'sort',pts:3,q:'Which conditions make a disease spread easily, and which slow it down?',
+  bins:[{k:'up',label:'Disease spreads easily'},{k:'down',label:'Disease is slowed down'}],
+  chips:[{l:'One tree species planted everywhere',a:'up'},{l:'Many competent hosts nearby',a:'up'},{l:'A farm growing a single crop',a:'up'},
+         {l:'High species diversity',a:'down'},{l:'Many incompetent hosts',a:'down'},{l:'A mixed rainforest',a:'down'}],
+  fb:'Diversity dilutes disease. Sameness concentrates it.'},
+
+ {type:'order',pts:3,q:'Put the dilution effect in order, from start to finish.',
+  steps:['An ecosystem contains many different species',
+         'A mosquito carrying a pathogen searches for a host',
+         'It is most likely to land on an incompetent host',
+         'The pathogen cannot replicate, so that bite is wasted',
+         'The disease\u2019s prevalence in the environment falls'],
+  fb:'Diversity \u2192 wrong host \u2192 wasted bite \u2192 less disease. That is the whole chain.'},
+
+ {type:'blank',pts:3,q:'Complete the paragraph. Two words in the bank are not needed.',
+  parts:[
+   {before:'A sudden or major change that harms an ecosystem is called a ',after:', '},
+   {before:'and it can remove food, shelter or ',after:' places. '},
+   {before:'Because it holds many species, a diverse ecosystem has greater ',after:' and recovers more easily.'}
+  ],
+  words:['disruption','breeding','resilience','habitat','pollution'],
+  ansIdx:[0,1,2],
+  fb:'Disruption \u2192 breeding \u2192 resilience. Habitat and pollution were the extras.'},
+
+ {type:'mcq',pts:1,q:'What job do pollinators do in an ecosystem?',
+  opts:['They return nutrients to the soil','They keep prey numbers in check','They help plants reproduce by carrying pollen','They make food using sunlight'],a:2,
+  fb:'Decomposers return nutrients, predators keep numbers in check, plants make the food.'},
+
+ {type:'tf',pts:1,q:'Removing all the predators from an ecosystem would make it healthier, because fewer animals would be killed.',a:false,
+  fb:'False. Without predators, prey numbers explode and eat out the food supply \u2014 the whole system falls out of balance.'},
+
+ {type:'multi',pts:2,q:'People plan to clear a coastal mangrove to build shops. Select every ecological risk they should consider.',
+  opts:['Young fish lose their nursery habitat','The coast loses its natural defence against storms and erosion','Shops will be noisy for tourists','Biodiversity drops, so the area becomes less resilient','The mangrove mud will turn into rock'],a:[0,1,3],
+  fb:'Noise is a social problem, not an ecological one, and mud does not turn into rock. The other three are real ecological risks.'},
+
+ {type:'mcq',pts:2,q:'A class kept fish in a sealed tank with water plants. When the plants were removed, the fish died within days. What is the best explanation?',
+  opts:['The fish were lonely without the plants','The plants were a source of oxygen for the water','The plants kept the water at the right temperature','The fish could only eat plant leaves'],a:1,
+  fb:'Plants release oxygen into the water. Remove them and the fish cannot respire.'}
+];
+
+(function(){
+  const body=document.getElementById('quizBody');
+  const TYPELABEL={mcq:'Multiple choice',tf:'True or false',multi:'Select all that apply',match:'Drag to match',sort:'Drag to sort',order:'Put in order',blank:'Fill the blanks'};
+  let totalPts=0;
+
+  QUIZ.forEach((q,i)=>{
+    totalPts+=q.pts;
+    const el=document.createElement('div');
+    el.className='q'+(q.type==='tf'?' tf':'');
+    el.dataset.qi=i;
+    let inner='<div class="q-head"><div class="q-no">'+(i+1)+'</div><div><span class="q-type">'+TYPELABEL[q.type]+' \u00b7 '+q.pts+(q.pts===1?' pt':' pts')+'</span><div class="q-prompt">'+q.q+'</div></div></div>';
+
+    if(q.type==='mcq'||q.type==='multi'){
+      inner+='<div class="opts">';
+      q.opts.forEach((o,j)=>{inner+='<div class="opt" data-oi="'+j+'"><span class="mark">'+String.fromCharCode(65+j)+'</span><span>'+o+'</span></div>';});
+      inner+='</div>';
+    }
+    if(q.type==='tf'){
+      inner+='<div class="opts"><div class="opt" data-oi="1"><span class="mark">T</span><span>True</span></div><div class="opt" data-oi="0"><span class="mark">F</span><span>False</span></div></div>';
+    }
+    if(q.type==='match'){
+      inner+='<div class="dnd"><div class="pool" data-pool="q'+i+'"></div><div style="margin-top:14px" id="rows-q'+i+'"></div></div>';
+    }
+    if(q.type==='sort'){
+      inner+='<div class="dnd"><div class="pool" data-pool="q'+i+'"></div><div class="bins two" style="margin-top:14px">';
+      q.bins.forEach(b=>{inner+='<div class="bin b-'+(b.k==='bio'||b.k==='down'?'green':'pink')+'"><div class="bin-label"><span class="swatch"></span>'+b.label+'</div><div class="bin-drop" data-drop="1" data-group="q'+i+'" data-key="'+b.k+'"></div></div>';});
+      inner+='</div></div>';
+    }
+    if(q.type==='order'){
+      inner+='<div class="dnd"><div class="pool" data-pool="q'+i+'"></div><div class="order-slots">';
+      q.steps.forEach((s,j)=>{inner+='<div class="order-slot"><div class="n">'+(j+1)+'</div><div class="order-drop" data-drop="1" data-group="q'+i+'" data-key="s'+j+'" data-cap="1"></div></div>';});
+      inner+='</div></div>';
+    }
+    if(q.type==='blank'){
+      inner+='<div class="dnd"><div class="pool" data-pool="q'+i+'"></div><div style="margin-top:14px">';
+      q.parts.forEach((p,j)=>{inner+='<span class="blank-line">'+p.before+'<span class="blank-slot" data-drop="1" data-group="q'+i+'" data-key="b'+j+'" data-cap="1"></span>'+p.after+'</span> ';});
+      inner+='</div></div>';
+    }
+    inner+='<div class="fb" data-fb></div>';
+    el.innerHTML=inner;
+    body.appendChild(el);
+
+    /* post-build wiring for drag questions */
+    if(q.type==='match'){
+      const rows=el.querySelector('#rows-q'+i);
+      q.pairs.slice().sort(()=>Math.random()-0.5).forEach(p=>{
+        const r=document.createElement('div');
+        r.className='match-row';
+        r.innerHTML='<div class="match-slot" data-drop="1" data-group="q'+i+'" data-key="'+p.id+'" data-cap="1"></div><div class="match-def">'+p.d+'</div>';
+        rows.appendChild(r);
+      });
+      buildPool('q'+i,q.pairs.map(p=>({id:p.id,label:p.t,ans:p.id})));
+    }
+    if(q.type==='sort'){
+      buildPool('q'+i,q.chips.map((c,j)=>({id:'s'+j,label:c.l,ans:c.a})));
+    }
+    if(q.type==='order'){
+      buildPool('q'+i,q.steps.map((s,j)=>({id:'o'+j,label:s,ans:'s'+j})));
+    }
+    if(q.type==='blank'){
+      buildPool('q'+i,q.words.map((w,j)=>({id:'w'+j,label:w,ans:q.ansIdx.indexOf(j)>=0?'b'+q.ansIdx.indexOf(j):'pool'})));
+    }
+  });
+
+  document.querySelectorAll('.qmeta span')[1].textContent=totalPts+' points';
+
+  /* option selection */
+  body.addEventListener('click',e=>{
+    const opt=e.target.closest('.opt'); if(!opt) return;
+    const q=opt.closest('.q'); const qi=+q.dataset.qi; const type=QUIZ[qi].type;
+    if(type==='multi'){opt.classList.toggle('sel');}
+    else{q.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));opt.classList.add('sel');}
+  });
+
+  function gradeAll(){
+    let earned=0,total=0;const parts=[];
+    QUIZ.forEach((q,i)=>{
+      const el=body.querySelector('.q[data-qi="'+i+'"]');
+      const fb=el.querySelector('[data-fb]');
+      let got=0;
+      total+=q.pts;
+
+      if(q.type==='mcq'||q.type==='tf'){
+        const correct=(q.type==='tf')?(q.a?1:0):q.a;
+        el.querySelectorAll('.opt').forEach(o=>{
+          const oi=+o.dataset.oi;
+          o.classList.remove('ok','no','missed');
+          if(oi===correct) o.classList.add('ok');
+          else if(o.classList.contains('sel')) o.classList.add('no');
+        });
+        const sel=el.querySelector('.opt.sel');
+        if(sel && +sel.dataset.oi===correct) got=q.pts;
+      }
+      else if(q.type==='multi'){
+        let right=0,wrong=0;
+        el.querySelectorAll('.opt').forEach(o=>{
+          const oi=+o.dataset.oi, isA=q.a.indexOf(oi)>=0, sel=o.classList.contains('sel');
+          o.classList.remove('ok','no','missed');
+          if(isA&&sel){o.classList.add('ok');right++;}
+          else if(!isA&&sel){o.classList.add('no');wrong++;}
+          else if(isA&&!sel){o.classList.add('missed');}
+        });
+        const score=Math.max(0,right-wrong)/q.a.length;
+        got=Math.round(score*q.pts*10)/10;
+      }
+      else{
+        const s=scoreGroup('q'+i,true);
+        got=Math.round((s.ok/s.total)*q.pts*10)/10;
+      }
+
+      earned+=got;
+      const full=(got>=q.pts);
+      fb.className='fb show '+(full?'good':'bad');
+      fb.innerHTML='<b>'+(full?'Correct \u2014 '+q.pts+'/'+q.pts:'You scored '+got+'/'+q.pts)+'.</b> '+q.fb;
+      parts.push({n:i+1,got:got,pts:q.pts});
+    });
+
+    const pct=Math.round(earned/total*100);
+    const card=document.getElementById('scorecard');
+    card.classList.add('show');
+    document.getElementById('scoreBig').textContent=pct+'%';
+    const band=document.getElementById('scoreBand');
+    const msg=document.getElementById('scoreMsg');
+    if(pct>=90){band.textContent='Outstanding';msg.textContent='You have this whole unit locked down \u2014 definitions, examples and the tricky disease section.';}
+    else if(pct>=70){band.textContent='Strong pass';msg.textContent='Solid work. Read the red boxes above, fix those few, then run it again.';}
+    else if(pct>=50){band.textContent='Almost there';msg.textContent='The ideas are landing but the details are slipping. Go back to the chapters your red answers came from and try again.';}
+    else{band.textContent='Back to the chapters';msg.textContent='Work through chapters 1 to 8 again with the interactives, then retake this. It will feel very different the second time.';}
+    document.getElementById('scoreBar').style.width=pct+'%';
+    const br=document.getElementById('scoreBreak');
+    br.innerHTML='';
+    parts.forEach(p=>{
+      const b=document.createElement('b');
+      b.textContent='Q'+p.n+': '+p.got+'/'+p.pts;
+      b.style.background=(p.got>=p.pts)?'#dff7e4':'#ffe1e9';
+      br.appendChild(b);
+    });
+    card.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  document.getElementById('quizCheck').addEventListener('click',gradeAll);
+  document.getElementById('quizReset').addEventListener('click',()=>{
+    QUIZ.forEach((q,i)=>{
+      const el=body.querySelector('.q[data-qi="'+i+'"]');
+      el.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel','ok','no','missed'));
+      el.querySelector('[data-fb]').className='fb';
+      if(['match','sort','order','blank'].indexOf(q.type)>=0) resetGroup('q'+i);
+    });
+    document.getElementById('scorecard').classList.remove('show');
+    document.getElementById('quiz').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+})();
+</script>
+
+</body>
+</html>
